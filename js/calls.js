@@ -4,10 +4,10 @@
 
     //methods
     init: function() {
-        availGroups.workerPostMsg('setGroups', 'http://localhost:50702/api/values');
+        availGroups.workerPostMsg('setGroups', 'http://54.149.167.236/webapi/api/values');
     },
     workerPostMsg: function (cmd, url) {
-        var worker = new Worker('http://localhost:59720/js/apiCall.js');
+        var worker = new Worker('http://54.149.167.236/webapp/js/apiCall.js');
         worker.postMessage({ 'cmd': cmd, 'url': url });
         worker.addEventListener('message', function (e) {
             if (e.data.cmd == 'setGroups') {
@@ -25,7 +25,7 @@
     setCallGroup: function (groupid) {
         $("#overlay").fadeIn();
         var id = groupid.value;
-        availGroups.workerPostMsg('getCallData', 'http://localhost:50702/api/values/' + id);
+        availGroups.workerPostMsg('getCallData', 'http://54.149.167.236/webapi/api/values' + id);
     },
     getCallData: function(data) {
         var source = $("#call-template").html();
