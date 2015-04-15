@@ -25,7 +25,7 @@
     setCallGroup: function (groupid) {
         $("#overlay").fadeIn();
         var id = groupid.value;
-        availGroups.workerPostMsg('getCallData', 'http://54.149.167.236/webapi/api/values' + id);
+        availGroups.workerPostMsg('getCallData', 'http://54.149.167.236/webapi/api/values/' + id);
     },
     getCallData: function(data) {
         var source = $("#call-template").html();
