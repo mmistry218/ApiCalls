@@ -1,0 +1,222 @@
+﻿<!DOCTYPE>
+<html>
+<head>
+    <style>
+        .nbaMVPplyrList {
+            width: 930px;
+            float: left;
+            padding-bottom: 20px;
+        }
+
+        .nbaMVPplyrListHdr {
+            width: 173px;
+            height: 22px;
+            padding: 0px 0 0px 10px;
+            border-bottom: 1px solid #cccccc;
+            float: left;
+            background: url(http://i.cdn.turner.com/nba/nba/.element/img/2.0/sect/fanvote/mvpfanvote_tablehdr_bck.jpg) no-repeat;
+        }
+
+        .nbaMVPplyrListSts {
+            width: 40px;
+            height: 22px;
+            padding: 0px 0 0px 10px;
+            border-bottom: 1px solid #cccccc;
+            float: left;
+            background: url(http://i.cdn.turner.com/nba/nba/.element/img/2.0/sect/fanvote/mvpfanvote_tablehdr_bck.jpg) no-repeat;
+        }
+
+        .nbaMVPplyrListTms {
+            width: 181px;
+            height: 22px;
+            padding: 0px 0 0px 10px;
+            border-bottom: 1px solid #cccccc;
+            float: left;
+            background: url(http://i.cdn.turner.com/nba/nba/.element/img/2.0/sect/fanvote/mvpfanvote_tablehdr_bck.jpg) no-repeat;
+        }
+
+        .nbaMVPplyrListAdd {
+            width: 367px;
+            height: 22px;
+            padding: 0px 0 0px 10px;
+            border-bottom: 1px solid #cccccc;
+            border-right: 1px solid #cccccc;
+            float: left;
+            background: url(http://i.cdn.turner.com/nba/nba/.element/img/2.0/sect/fanvote/mvpfanvote_tablehdr_bck.jpg) no-repeat;
+        }
+
+        .selected {
+            color: #FF0000;
+        }
+
+        .nbaMVPplyrListHdr p {
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: bold;
+            top: -10px;
+            position: relative;
+        }
+
+        .nbaMVPplyrListSts p {
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: bold;
+            top: -10px;
+            position: relative;
+        }
+
+        .nbaMVPplyrListTms p {
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: bold;
+            top: -10px;
+            position: relative;
+        }
+
+        .nbaMVPplyrList li {
+            list-style: none;
+            clear: both;
+            height: 22px;
+            border-right: 1px solid #CCCCCC;
+            border-left: 1px solid #CCCCCC;
+            width: 900px;
+        }
+
+            .nbaMVPplyrList li.even {
+                background: #EFEFEF none repeat scroll 0 0;
+                border-bottom: 1px solid #cccccc;
+            }
+
+            .nbaMVPplyrList li.odd {
+                background: #FFF none repeat scroll 0 0;
+                border-bottom: 1px solid #cccccc;
+            }
+
+            .nbaMVPplyrList li p {
+                float: left;
+                font-size: 11px;
+                font-weight: bold;
+            }
+
+                .nbaMVPplyrList li p a {
+                    text-decoration: none;
+                }
+
+            .nbaMVPplyrList li.selected p a {
+                color: red;
+            }
+
+            .nbaMVPplyrList li p a.player-add {
+                background: url(http://i.cdn.turner.com/nba/nba/.element/img/2.0/sect/fanvote/mvpfanvote_add_btn_gray.png) no-repeat;
+                display: inline-block;
+                height: 23px;
+                width: 90px;
+            }
+
+            .nbaMVPplyrList li.selected p a.player-add {
+                background: url(http://i.cdn.turner.com/nba/nba/.element/img/2.0/sect/fanvote/mvpfanvote_add_btn_red.png) no-repeat;
+            }
+
+            .nbaMVPplyrList li p.nba_player {
+                padding: 4px 0 7px 7px;
+                margin: 0 !important;
+                width: 175px;
+                border-right: 1px solid #cccccc;
+            }
+
+            .nbaMVPplyrList li p.nba_stats {
+                padding: 4px 0 7px 7px;
+                margin: 0 !important;
+                width: 42px;
+                border-right: 1px solid #cccccc;
+            }
+
+            .nbaMVPplyrList li p.nba_team {
+                border-right: 1px solid #cccccc;
+                padding: 4px 0 7px 15px;
+                margin: 0 !important;
+                width: 175px;
+            }
+
+            .nbaMVPplyrList li p.nba_add {
+                padding: 0 0 0 150px;
+                margin: 0 !important;
+                width: 175px;
+            }
+    </style>
+    <script src="js/jquery.js"></script>
+    <script src="js/handlebars-v3.0.0.js"></script>
+    <script src="/js/calls.js"></script>
+    <script id="call-template" type="text/x-handlebars-template">
+        {{#each calls}}
+        <section class="item" id="item-1">
+            <span class="date">{{calldate}}</span>
+            <span class="callerid">{{caller_id}}</span>
+            <span class="id">{{id}}</span>
+            <span class="repeatcall">{{repeat_call}}</span>
+            <span class="disposition">{{disposition}}</span>
+        </section>
+        {{/each}}
+    </script>
+    <script id="group-template" type="text/x-handlebars-template">
+        {{#each groups}}
+        <option value="{{id}}">{{groupname}}</option>
+        {{/each}}
+    </script>
+</head>
+<body>
+    <div class="groupDD">
+        <select id="callGroups" onchange="availGroups.setCallGroup(this);"></select>
+    </div>
+    <style>
+        div.content {
+            display: table;
+            width: 100%;
+        }
+        main { 
+            display: table-row-group 
+        }
+        div.content header {
+            background:url(http://i.cdn.turner.com/nba/nba/.element/img/2.0/sect/fanvote/mvpfanvote_tablehdr_bck.jpg) no-repeat;
+            border:none;
+            text-align:center;
+        }
+        div.content header, div.content main section {
+            display: table-row;
+            border-left: 1px solid black;
+        }
+
+        span.date,span.callerid,span.id,span.repeatcall,span.disposition {
+            display: table-cell;
+            border-left: 1px solid black;
+            text-align: center;
+        }
+        .item:nth-child(even) {
+            background: #CCC;
+        }
+        #overlay { 
+            display:none; 
+            position:absolute; 
+            background:#fff; 
+        }
+        #img-load { 
+            position:absolute; 
+        }
+    </style>
+    <div class="content">
+        <header>
+            <span class="date">Date</span>
+            <span class="callerid">CallerId</span>
+            <span class="id">Id</span>
+            <span class="repeatcall">Repeat Call</span>
+            <span class="disposition">Disposition</span>
+        </header>
+        <main id="callList">
+            <div id="overlay">
+                <img src="http://www.sanbaldo.com/wordpress/wp-content/bigrotation2.gif" id="img-load" />
+            </div>
+        </main>
+    </div>
+    
+</body>
+</html>
